@@ -26,12 +26,7 @@ export async function GET(request: Request) {
     try {
       const data = JSON.parse(rawText);
       return NextResponse.json({
-        count: data.count,
-        debug: {
-          rawResponse: rawText,
-          headers: Object.fromEntries(response.headers),
-          url: messageApi
-        }
+        count: data.count
       });
     } catch (e) {
       return NextResponse.json({ 

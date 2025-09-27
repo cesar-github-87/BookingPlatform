@@ -55,15 +55,22 @@ export async function POST(request: Request) {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      return NextResponse.json(
-        { errors: errorData.fieldErrors || ['Failed to create booking'] },
-        { status: response.status }
-      );
+      try {
+        const errorData = await response.json();
+        return NextResponse.json(
+          { errors: errorData.fieldErrors || ['Failed to create booking'] },
+          { status: response.status }
+        );
+      } catch (e) {
+        return NextResponse.json(
+          { error: 'Failed to create booking' },
+          { status: response.status }
+        );
+      }
     }
     
     const data = await response.json();
-    return NextResponse.json(data.bookings || []);
+    return NextResponse.json(data.booking || [], { status: response.status});
   } catch (error) {
     console.error('Error fetching bookings:', error);
     return NextResponse.json([], { status: 500 });

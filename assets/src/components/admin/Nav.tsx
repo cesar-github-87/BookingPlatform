@@ -43,11 +43,24 @@ const Nav: React.FC<NavProps> = ({ setAuthenticate, isAuthenticated }) => {
     }
   }, []);
 
-  const doLogout = () => {
-    const cookies = new Cookies();
-    cookies.remove('token', { path: '/' });
-    setAuthenticate(false);
-    window.location.href = '/';
+  const doLogout = async () => {
+    try {
+      // Call the auth/logout endpoint
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    } catch (error) {
+      console.error('Error logging out:', error);
+    } finally {
+      // Continue with local logout regardless of API success
+      const cookies = new Cookies();
+      cookies.remove('token', { path: '/' });
+      setAuthenticate(false);
+      window.location.href = '/';
+    }
   };
 
   const getNavLinkClass = (path: string) => {
