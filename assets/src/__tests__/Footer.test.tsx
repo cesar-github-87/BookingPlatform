@@ -11,7 +11,7 @@ jest.mock('next/link', () => {
 });
 
 // Mock the package.json import
-jest.mock('../../../package.json', () => ({
+jest.mock('../../package.json', () => ({
   version: '2.0.0'
 }));
 
