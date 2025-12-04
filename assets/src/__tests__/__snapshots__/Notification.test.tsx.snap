@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
 exports[`Notification Component Notification renders alert inbox when there are unread notifications 1`] = `
 <DocumentFragment>
