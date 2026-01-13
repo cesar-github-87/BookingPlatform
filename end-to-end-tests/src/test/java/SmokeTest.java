@@ -1,5 +1,9 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.BeforeEach;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+//import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 import pageobjects.*;
 
@@ -11,7 +15,7 @@ import static org.hamcrest.number.OrderingComparison.greaterThan;
 
 public class SmokeTest extends TestSetup {
 
-    @BeforeEach
+    @BeforeMethod
     public void logIntoApplication(){
         navigateToApplication();
 

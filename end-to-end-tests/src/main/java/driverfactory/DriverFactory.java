@@ -16,10 +16,12 @@ public class DriverFactory
 {
     private static String OS = System.getProperty("os.name").toLowerCase();
 
+
     public WebDriver create() {
         if(System.getenv("BROWSER") != null){
             if(System.getenv("BROWSER").equals("chrome")){
                 return prepareChromeDriver();
+
             } else if (System.getenv("BROWSER").equals("remote")){
                 return prepareRemoteDriver();
             } else {
@@ -29,13 +31,18 @@ public class DriverFactory
         }
 
         System.out.println("WARN: No browser option detected. Defaulting to ChromeDriver but if you want to use a different browser please assign a browser to the env var 'browser'.");
+
         return prepareChromeDriver();
     }
 
     private WebDriver prepareChromeDriver(){
         WebDriverManager.chromedriver().setup();
-
-        return new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--window-size=1920,1080");
+        return new ChromeDriver(options);
     }
 
     private WebDriver prepareRemoteDriver(){
@@ -51,6 +58,7 @@ public class DriverFactory
 
         ChromeOptions chromeOptions = new ChromeOptions();
 
+        chromeOptions.addArguments("---headless=new");
         chromeOptions.setPlatformName("Windows 10");
         chromeOptions.setBrowserVersion("latest");
 

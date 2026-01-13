@@ -1,6 +1,10 @@
 import driverfactory.DriverFactory;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.AfterEach;
+//import org.junit.jupiter.api.BeforeEach;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 
@@ -14,13 +18,13 @@ public class TestSetup {
 
     WebDriver driver;
 
-    @BeforeEach
+    @BeforeMethod
     public void SetUp(){
         driver = new DriverFactory().create();
         driver.manage().timeouts().implicitlyWait(Duration.of(2, SECONDS));
     }
 
-    @AfterEach
+    @AfterMethod
     public void TearDown(){
         driver.quit();
     }
