@@ -30,6 +30,11 @@ public class TestSetup {
     }
 
     void navigateToApplication(){
+        String ip = System.getProperty("server.ip", "localhost");
+        String port = "3003";
+        String baseUrl = "http://" + ip + ":" + port;
+        System.out.println("El Target: "+ System.getenv("TARGET") + " La IP: "+ baseUrl);
+
         if(System.getenv("TARGET") != null && System.getenv("TARGET").equals("production")){
             // We load the production page up initially to gain access to the site before
             // adding in the cookie to disabled the welcome popup. We finally have to refresh
@@ -38,7 +43,7 @@ public class TestSetup {
             driver.manage().addCookie(new Cookie("welcome", "true"));
             driver.navigate().refresh();
         } else {
-            driver.navigate().to("http://localhost:3003/admin");
+            driver.navigate().to(baseUrl+"/admin");
         }
     }
 
