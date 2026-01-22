@@ -56,6 +56,9 @@ public class RoomListingPage extends BasePage {
 
     public int roomCount() throws InterruptedException {
         Thread.sleep(1000);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[data-type~=\"room\"]")));
+        System.out.println("List Room Size:" + lstRooms.size());
         return lstRooms.size();
     }
 
