@@ -49,9 +49,9 @@ public class RoomListingPage extends BasePage {
     }
 
     public void clickCreateRoom() throws InterruptedException {
-        Thread.sleep(200);
+        Thread.sleep(1000);
         btnCreate.click();
-        Thread.sleep(200);
+        Thread.sleep(1000);
     }
 
     public int roomCount() throws InterruptedException {
