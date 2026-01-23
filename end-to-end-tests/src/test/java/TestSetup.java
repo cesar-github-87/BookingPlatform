@@ -33,7 +33,7 @@ public class TestSetup {
         String ip = System.getProperty("server.ip", "localhost");
         String port = "3003";
         String baseUrl = "http://" + ip + ":" + port;
-        System.out.println("El Target: "+ System.getenv("TARGET") + " La IP: "+ baseUrl);
+        //System.out.println("El Target: "+ System.getenv("TARGET") + " La IP: "+ baseUrl);
 
         if(System.getenv("TARGET") != null && System.getenv("TARGET").equals("production")){
             // We load the production page up initially to gain access to the site before

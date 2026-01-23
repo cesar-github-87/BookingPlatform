@@ -26,7 +26,7 @@ public class SmokeTest extends TestSetup {
         loginPage.clickLogin();
     }
 
-    @Test
+    @Test (priority = 1)
     public void authSmokeTest(){
         System.out.println("TEST AuthSmokeTest");
         RoomListingPage roomListingPage = new RoomListingPage(driver);
@@ -34,7 +34,7 @@ public class SmokeTest extends TestSetup {
         assertThat(roomListingPage.roomFormExists(), is(true));
     }
 
-    @Test
+    @Test(priority = 2)
     public void roomSmokeTest() throws InterruptedException {
         SoftAssert  softAssert = new SoftAssert();
 
@@ -50,13 +50,13 @@ public class SmokeTest extends TestSetup {
         roomListingPage.clickCreateRoom();
 
         int currentRoomCount = roomListingPage.getRoomCountWithWait(initialRoomCount+1);
-        System.out.println("roomSmokeTest: Room Count: " + currentRoomCount + "Initial room count: " + initialRoomCount);
+        System.out.println("New Room Count: " + currentRoomCount + " Initial room count: " + initialRoomCount);
         System.out.println("---------------------------------------------------------------------");
         softAssert.assertEquals(currentRoomCount, initialRoomCount + 1);
         softAssert.assertAll();
     }
 
-    @Test
+    @Test(priority = 3)
     public void bookingSmokeTest() throws InterruptedException {
         System.out.println("TEST bookingSmokeTest");
         SoftAssert  softAssert = new SoftAssert();
@@ -72,7 +72,7 @@ public class SmokeTest extends TestSetup {
         System.out.println("---------------------------------------------------------------------");
     }
 
-    @Test
+    @Test (priority = 4)
     public void reportSmokeTest(){
         System.out.println("TEST reportSmokeTest");
         SoftAssert  softAssert = new SoftAssert();
@@ -84,7 +84,7 @@ public class SmokeTest extends TestSetup {
         System.out.println("---------------------------------------------------------------------");
     }
 
-    @Test
+    @Test(priority = 5)
     public void brandingSmokeTest() throws InterruptedException {
         System.out.println("TEST brandingSmokeTest");
         SoftAssert  softAssert = new SoftAssert();
@@ -100,7 +100,7 @@ public class SmokeTest extends TestSetup {
         System.out.println("---------------------------------------------------------------------");
     }
 
-    @Test
+    @Test (priority = 6)
     public void messageSmokeTest(){
         System.out.println("TEST messageSmokeTest");
         SoftAssert  softAssert = new SoftAssert();
