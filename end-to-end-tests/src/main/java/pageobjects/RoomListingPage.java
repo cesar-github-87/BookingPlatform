@@ -68,7 +68,7 @@ public class RoomListingPage extends BasePage {
         try {
             // Esta línea es mágica: Espera hasta que la lista tenga EXACTAMENTE el tamaño esperado
             // Nota: Debes usar el localizador By, no la lista @FindBy directamente para el wait
-            wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("div[data-type~='room']"), expectedCount));
+            lstRooms = wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("div[data-type~='room']"), expectedCount));
         } catch (TimeoutException e) {
             System.out.println("⚠️ El nuevo elemento no apareció a tiempo. Retornando conteo actual.");
         }
