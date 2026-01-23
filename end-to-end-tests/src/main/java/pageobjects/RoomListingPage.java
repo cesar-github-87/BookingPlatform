@@ -1,6 +1,7 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -61,6 +62,22 @@ public class RoomListingPage extends BasePage {
         System.out.println("List Room Size:" + lstRooms.size());
         return lstRooms.size();
     }
+    public int getRoomCountWithWait(int expectedCount) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Damos hasta 15 segundos
+
+        try {
+            // Esta línea es mágica: Espera hasta que la lista tenga EXACTAMENTE el tamaño esperado
+            // Nota: Debes usar el localizador By, no la lista @FindBy directamente para el wait
+            wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("div[data-type~='room']"), expectedCount));
+        } catch (TimeoutException e) {
+            System.out.println("⚠️ El nuevo elemento no apareció a tiempo. Retornando conteo actual.");
+        }
+
+        // Ahora sí, obtenemos el tamaño real (sea el nuevo o el viejo si falló)
+        return lstRooms.size();
+    }
+
+
 
     public void clickFirstRoom() {
         lstRooms.get(0).click();

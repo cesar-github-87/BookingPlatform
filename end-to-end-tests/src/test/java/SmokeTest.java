@@ -44,7 +44,7 @@ public class SmokeTest extends TestSetup {
         roomListingPage.checkRadio();
         roomListingPage.clickCreateRoom();
 
-        int currentRoomCount = roomListingPage.roomCount();
+        int currentRoomCount = roomListingPage.getRoomCountWithWait(initialRoomCount+1);
 
         assertThat(currentRoomCount, is(initialRoomCount + 1));
     }
